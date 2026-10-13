@@ -10,6 +10,8 @@ No account, AI provider, cloud computation or runtime network dependency. Origin
 
 ## Try it
 
+**[Open the no-install frozen demo](https://nazeeh111.github.io/Sweepforge/)** to explore a real exported mechanism and saved collision evidence. The full fitting and interval checker run in the local workshop below.
+
 Python 3.12 or later. From this repository:
 
 ```sh

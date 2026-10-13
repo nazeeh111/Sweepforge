@@ -1,0 +1,130 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sweepforge · Between the frames</title><meta name="description" content="Play a real frozen linkage design whose collision is missed by 64 animation frames. Inspect the evidence and run the full workshop locally."><style>
+:root{color-scheme:light;--ink:#243631;--muted:#70817b;--line:#dce3dc;--orange:#cb683b}*{box-sizing:border-box}body{margin:0;background:#f4f3ed;color:var(--ink);font:14px/1.6 system-ui,-apple-system,sans-serif}header,main,footer{max-width:1100px;margin:auto;padding:26px 5%}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}header strong{font-size:23px;letter-spacing:-1px}a{color:inherit;text-underline-offset:4px}.small,.eyebrow{font:10px ui-monospace,monospace;letter-spacing:1px;color:var(--muted)}.eyebrow{color:var(--orange);margin:20px 0 15px}h1{font-size:clamp(31px,4vw,49px);line-height:1.15;letter-spacing:-1.5px;font-weight:550;margin:0 0 20px}h1 span{color:var(--muted)}.intro{max-width:630px;color:var(--muted);font-size:15px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:26px 0}.metric{border:1px solid var(--line);border-radius:6px;padding:18px;background:#fbfcf8}.metric.alert{background:#f7e8df;border-color:#e3c8b8}.metric b{display:block;font-size:23px;font-weight:550;letter-spacing:-.5px}.metric p{margin:4px 0 0;color:var(--muted);font-size:12px}.stage{background:#182637;border-radius:8px;overflow:hidden}canvas{display:block;width:100%;aspect-ratio:1100/580}.transport{display:flex;align-items:center;gap:12px;padding:15px;color:#eae1cb;font-size:12px}.transport input{flex:1;min-width:40px;accent-color:#ce8851}.transport output{min-width:90px;font:10px ui-monospace,monospace}button{font:600 12px system-ui;cursor:pointer;border:0;border-radius:4px;padding:10px 14px;background:#e4ebe2;color:var(--ink)}button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #2b929c;outline-offset:3px}.witness{background:#bb7643;color:white}.scope{font-size:11px;color:var(--muted);padding:10px 0;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}.actions a{display:inline-block;text-decoration:none;padding:12px 17px;border-radius:4px;font-weight:600;font-size:12px;border:1px solid var(--line)}.actions .primary{background:var(--ink);color:#f3f3e9;border-color:var(--ink)}.copy{max-width:760px}.copy h2{font-size:19px;font-weight:550;margin-top:28px}.copy p{color:var(--muted);font-size:13px}details{background:#fbfcf8;border:1px solid var(--line);padding:16px;border-radius:6px;margin-top:20px}summary{cursor:pointer;font-size:12px;font-weight:600}pre{font:11px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#4d6258;padding-top:12px}.commands{background:#edf1e9;padding:17px;border-radius:5px}footer{font-size:10px;color:var(--muted);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;margin-top:28px}.transport #phase-value{display:inline-block;min-width:90px;font:10px ui-monospace,monospace}@media(max-width:600px){header,main,footer{padding:22px 5%}.metrics{grid-template-columns:1fr}.transport{flex-wrap:wrap;gap:8px;padding:12px}.transport input{flex-basis:40%}.transport .witness{flex-basis:100%}.metric b{font-size:22px}header .small{max-width:120px;text-align:right}.intro{font-size:13px}}
+</style></head><body><header><strong>Sweepforge</strong><span class="small">MOTION INTO MECHANISM</span></header><main>
+<div class="eyebrow">A REAL EXPORTED DESIGN · NO INSTALL REQUIRED</div><h1>64 frames miss it.<br><span>The full-cycle check catches it.</span></h1><p class="intro">Play a frozen mechanism from the actual v0.1.0 release. Every sampled tool point clears the small disk. A continuous interval calculation finds a collision between those samples.</p>
+<div class="metrics"><div class="metric"><span class="small">64 NOMINAL SAMPLES</span><b>+0.749 mm minimum gap</b><p>No sampled overlap. Sampling does not establish full-cycle clearance.</p></div><div class="metric alert"><span class="small">SAVED INTERVAL RESULT</span><b>Collision at 302.48°</b><p>A nominal phase interval is strictly inside the obstacle. Inspect it below.</p></div></div>
+<div class="stage"><canvas id="scene" width="1100" height="580" aria-label="Frozen planar mechanism"></canvas><div class="transport"><button id="play">Play</button><input id="phase" type="range" min="0" max="360" step="any" value="0" aria-label="Crank phase"><span id="phase-value"></span><button class="witness" id="witness">Jump to the witness</button></div></div>
+<p id="playback-message" class="scope">Gold: nominal tool path. Blue: requested path. Pink: fixed obstacle.</p><p class="scope">This diagnostic checks the tool point only. Bars are drawn for context and excluded from this saved result. Playback derives poses from frozen dimensions; it does not rerun the Python interval checker.</p>
+<div class="actions"><a class="primary" href="https://github.com/nazeeh111/Sweepforge/releases/tag/v0.1.0">Get the full workshop ↗</a><a href="https://github.com/nazeeh111/Sweepforge/releases/download/v0.1.0/sweepforge-browser-design.zip">Download this exact design ↓</a><a href="https://github.com/nazeeh111/Sweepforge">Inspect the source ↗</a></div>
+<section class="copy"><h2>Give a motor the motion you want.</h2><p>The local workshop edits timed paths and dimensions, fits one planar crank-rocker candidate, and checks six capsule-shaped bars plus the tool across a whole revolution and a declared dimensional tolerance. Clear, nominal collision and unresolved results stay distinct. Exports recompute the frozen inputs and include conceptual SVG/DXF patterns, source and an independent verifier.</p><h2>Recompute the evidence yourself.</h2><p>Download the exact design above, extract it and run its verifier from any directory using Python 3.12 or later. Install the included locked dependencies first. Installation needs a package source or wheel cache; the calculation uses no network.</p><pre class="commands">python -m pip install -r /path/to/design/requirements.lock
+python /path/to/design/verifier.py</pre><p>This is an original synthetic model with fixed circular obstacles and one assembly branch. No hardware, own-link collision, loads, flex, joint play or manufacturing safety was validated. mpmath interval support is experimental. File digests detect changes against a retained manifest; they are not signatures.</p></section>
+<details><summary>Inspect the frozen interval report</summary><pre>{
+  &quot;bounds&quot;: {
+    &quot;angleRad&quot;: [
+      0,
+      6.283185307179586
+    ],
+    &quot;clearanceMm&quot;: 0.0,
+    &quot;components&quot;: &quot;tool&quot;,
+    &quot;dimensionIntervalsMm&quot;: {
+      &quot;groundMm&quot;: [
+        80.0,
+        80.0
+      ],
+      &quot;p&quot;: [
+        72.0,
+        72.0
+      ],
+      &quot;q&quot;: [
+        66.0,
+        66.0
+      ],
+      &quot;r&quot;: [
+        22.0,
+        22.0
+      ],
+      &quot;u&quot;: [
+        85.0,
+        85.0
+      ],
+      &quot;v&quot;: [
+        30.0,
+        30.0
+      ]
+    },
+    &quot;radiusIntervalsMm&quot;: {
+      &quot;linkRadiusMm&quot;: [
+        2.0,
+        2.0
+      ],
+      &quot;toolRadiusMm&quot;: [
+        0,
+        0.0
+      ]
+    }
+  },
+  &quot;budget&quot;: 8000,
+  &quot;cells&quot;: 126,
+  &quot;inputSha256&quot;: &quot;daf121092004603f0e1af9a1dd0f92a45b04efedc7272c046c8f79468a63a3dd&quot;,
+  &quot;limits&quot;: [
+    &quot;One uniformly timed revolution, one fixed-topology positive assembly branch.&quot;,
+    &quot;Nominal collisions; clear covers every declared independent dimension/radius interval.&quot;,
+    &quot;Ground/r/p/q/u/v and nonnegative body radii vary; phase/yaw/translation are exact.&quot;,
+    &quot;Only fixed circular obstacles versus declared capsules/tool disk; no own-link collisions.&quot;,
+    &quot;No loads, flex, joint play, manufacturing/process or physical-safety guarantee.&quot;,
+    &quot;Outward mpmath interval basic operations at 30 decimal digits; interval support is experimental.&quot;
+  ],
+  &quot;method&quot;: &quot;Outward interval circle closure and clamped closest-point capsule projection; conservative degenerate segment hull. Entire angular cover, independent dimensional intervals; nominal interior collision witnesses only.&quot;,
+  &quot;reason&quot;: &quot;A nominal interval is strictly inside the expanded obstacle; not a tolerance-only overlap&quot;,
+  &quot;state&quot;: &quot;collision&quot;,
+  &quot;witness&quot;: {
+    &quot;angleInterval&quot;: [
+      5.279327269742936,
+      5.279327363369691
+    ],
+    &quot;angleRad&quot;: 5.279327316556314,
+    &quot;component&quot;: &quot;tool&quot;,
+    &quot;distanceSquaredUpperMm2&quot;: 0.9999993987491282,
+    &quot;expandedRadiusSquaredLowerMm2&quot;: 0.9999999999999999,
+    &quot;nominalOnly&quot;: true,
+    &quot;obstacle&quot;: 0
+  },
+  &quot;work&quot;: 396
+}</pre></details>
+</main><footer><span>ORIGINAL GEOMETRY. REPLAYABLE CALCULATIONS.</span><a href="https://github.com/nazeeh111/Sweepforge/blob/main/docs/method.md">Method, prior work &amp; limits ↗</a></footer><script id="frozen" type="application/json">{"design": {"groundMm": 80.0, "z": [22.0, 72.0, 66.0, 85.0, 30.0, 0.7, -0.3, 5.0, -8.0]}, "request": {"budget": 8000, "clearanceMm": 0.0, "components": "tool", "dimensionToleranceMm": 0.0, "groundMm": 80.0, "linkRadiusMm": 2.0, "obstacles": [{"radius": 1.0, "x": 55.89105825422612, "y": 62.85544635740919}], "pathToleranceMm": 2.0, "schema": "sweepforge/1", "target": [[86.70297029614103, 66.5230376822872], [87.99155538373668, 66.59322708956016], [88.5755863422241, 66.67457737131728], [88.50812317857401, 66.7630949651062], [87.85345908255957, 66.84368476255025], [86.68108050865406, 66.89489734767137], [85.0617526810656, 66.89319454141781], [83.06511214349095, 66.81634520873908], [80.75821052166606, 66.64588459679973], [78.20460300805487, 66.36871987229026], [75.46372363503409, 65.97800911318991], [72.5904065462078, 65.47343556706029], [69.63449506294253, 64.86097796506208], [66.64053452141782, 64.15225958339542], [63.647577469340305, 63.36355200208969], [60.68914545454372, 62.51451630377595], [57.793392544466656, 61.6267823354801], [54.98350302857199, 60.72248907802677], [52.278331341944906, 59.822926342445456], [49.69326027983594, 58.94741923619874], [47.241220982722304, 58.112574377924474], [44.9337933642987, 57.33195994167788], [42.7822957408507, 56.61622826645451], [40.79878030837027, 55.97362441781672], [38.9968741673189, 55.410771960283554], [37.39243670735161, 54.933598177167106], [36.00403457764516, 54.54825633744696], [34.85325765759852, 54.261915932076114], [33.964908600354974, 54.08331278294147], [33.36709224743923, 54.0229697117513], [33.091208015519186, 54.09300869816582], [33.1718059955269, 54.306475885866924], [33.646202189891056, 54.67609622792333], [34.553655870126335, 55.21237759856739], [35.93379272391761, 55.9210181649336], [37.82382703828929, 56.79967256442713], [40.254045568933456, 57.83434951812407], [43.24107636877687, 58.99608356180586], [46.77886003662934, 60.23901889291075], [50.82816510058388, 61.50147722089078], [55.30695793455128, 62.71153506174355], [60.085457290555, 63.797573770202234], [64.99010569509282, 64.70202428099257], [69.81868668261629, 65.39399021661677], [74.36441528321919, 65.87550974501171], [78.44231808029346, 66.17837060139786], [81.9098465706245, 66.35275390368724], [84.67659029975881, 66.45259107909189]], "toolRadiusMm": 0.0}}</script><script>
+const frozen=JSON.parse(document.getElementById('frozen').textContent);
+const req=frozen.request, design=frozen.design;
+const [r,p,q,u,v,phase,yaw,ox,oy]=design.z, g=design.groundMm;
+const cv=document.getElementById('scene'), cx=cv.getContext('2d');
+function pose(angle){
+ const theta=angle+phase, A=[0,0], D=[g,0], B=[r*Math.cos(theta),r*Math.sin(theta)];
+ const dx=D[0]-B[0],dy=D[1]-B[1],d=Math.hypot(dx,dy);
+ if(!(d>0))throw Error('Degenerate pose');
+ const a=(p*p-q*q+d*d)/(2*d),h2=p*p-a*a;
+ if(!(h2>0))throw Error('Assembly branch is not strictly closed');
+ const h=Math.sqrt(h2),ex=dx/d,ey=dy/d,C=[B[0]+a*ex-h*ey,B[1]+a*ey+h*ex];
+ const tx=(C[0]-B[0])/p,ty=(C[1]-B[1])/p,P=[B[0]+u*tx-v*ty,B[1]+u*ty+v*tx];
+ const cs=Math.cos(yaw),sn=Math.sin(yaw);
+ return Object.fromEntries(Object.entries({A,B,C,D,P}).map(([k,[x,y]])=>[k,[ox+cs*x-sn*y,oy+sn*x+cs*y]]));
+}
+const controls=['AB','BC','CD','BP','CP','AD'];
+let cloud=[...req.target], path=[];
+try{for(let i=0;i<=720;i++){let f=pose(i*Math.PI/360);path.push(f.P);cloud.push(...Object.values(f));}}
+catch(err){document.getElementById('playback-message').textContent='Playback unavailable: '+err.message;}
+for(const o of req.obstacles){cloud.push([o.x-o.radius,o.y-o.radius],[o.x+o.radius,o.y+o.radius]);}
+const margin=5+Math.max(req.linkRadiusMm,req.toolRadiusMm);
+const xs=cloud.map(x=>x[0]),ys=cloud.map(x=>x[1]);
+const minx=Math.min(...xs)-margin,maxx=Math.max(...xs)+margin,miny=Math.min(...ys)-margin,maxy=Math.max(...ys)+margin;
+const scale=Math.min((cv.width-40)/(maxx-minx),(cv.height-40)/(maxy-miny));
+function drawLine(points,color,width=1){cx.strokeStyle=color;cx.lineWidth=width;cx.beginPath();points.forEach(([x,y],i)=>i?cx.lineTo(x,y):cx.moveTo(x,y));cx.stroke();}
+function draw(){
+ cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,cv.width,cv.height);
+ cx.setTransform(scale,0,0,-scale,20-minx*scale,cv.height-20+miny*scale);
+ drawLine(req.target.concat([req.target[0]]),'#557e91',1/scale);drawLine(path,'#e6b365',1/scale);
+ for(const o of req.obstacles){cx.fillStyle='#da6f7777';cx.beginPath();cx.arc(o.x,o.y,o.radius,0,Math.PI*2);cx.fill();}
+ const angle=Number(document.getElementById('phase').value)*Math.PI/180;
+ try{const f=pose(angle);
+  for(const name of controls){cx.lineCap='round';drawLine([f[name[0]],f[name[1]]],name==='AD'?'#6c7682':'#eae1cb',2*req.linkRadiusMm);}
+  for(const key of ['A','B','C','D']){cx.fillStyle='#111b27';cx.beginPath();cx.arc(...f[key],1.5/scale,0,Math.PI*2);cx.fill();}
+  cx.fillStyle='#7febc5';cx.beginPath();cx.arc(...f.P,req.toolRadiusMm,0,Math.PI*2);cx.fill();
+ }catch(err){document.getElementById('playback-message').textContent='Playback unavailable: '+err.message;}
+ document.getElementById('phase-value').textContent=(angle*180/Math.PI).toFixed(2)+' degrees';
+}
+let playing=false,last=0;
+document.getElementById('play').onclick=()=>{playing=!playing;document.getElementById('play').textContent=playing?'Pause':'Play';last=0;};
+document.getElementById('phase').oninput=draw;
+function animate(now){if(playing){if(last){const slider=document.getElementById('phase');slider.value=(Number(slider.value)+(now-last)*0.03)%360;draw();}last=now;}requestAnimationFrame(animate);}
+draw();requestAnimationFrame(animate);
+</script><script>
+document.getElementById('witness').onclick=()=>{playing=false;document.getElementById('play').textContent='Play';document.getElementById('phase').value=302.48317390680313;draw();};
+</script></body></html>
