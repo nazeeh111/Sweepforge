@@ -1,0 +1,33 @@
+name: Verify
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.12'
+          - os: ubuntu-latest
+            python: '3.14'
+          - os: macos-latest
+            python: '3.14'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install locked dependencies and package
+        run: python -m pip install -r requirements.lock .
+      - name: Python geometry, portable export and loopback tests
+        run: python -m unittest discover -s tests -v
+      - name: Studio geometry controls
+        run: node --test tests/*.test.mjs
+      - name: Actual installed CLI and independent portable replay
+        run: python scripts/installed_check.py
