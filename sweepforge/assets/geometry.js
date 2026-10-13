@@ -25,4 +25,3 @@ export function resample(points, count=48) {
     return [0,1].map(k=>loop[j-1][k]+f*(loop[j][k]-loop[j-1][k]));
   });
 }
-
