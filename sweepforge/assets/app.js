@@ -2,13 +2,12 @@ import {pose,resample} from './geometry.js';
 const $ = id => document.getElementById(id);
 const fields = ['pathToleranceMm','linkRadiusMm','toolRadiusMm','clearanceMm','dimensionToleranceMm'];
 const names = ['r','p','q','u','v','phase','yaw','ox','oy'];
-const state = {request:null,design:null,result:null,revision:0,current:false,busy:false,mode:'edit',phase:0,playing:true,view:null,drag:null,stroke:[],examples:[]};
+const state = {request:null,design:null,result:null,revision:0,current:false,busy:false,mode:'edit',phase:0,playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,view:null,drag:null,stroke:[],examples:[]};
 const canvas = $('stage'), ctx = canvas.getContext('2d');
-let noticeTimer;
 
 
 function clone(value){return structuredClone(value);}
-function notice(message){$('notice').textContent=message;$('notice').hidden=false;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('notice').hidden=true,5000);}
+function notice(message){$('notice').textContent=message;$('notice').hidden=!message;}
 function number(input){
   const raw=input.value.trim(),value=Number(raw);
   const ok=raw!==''&&Number.isFinite(value)&&(!input.hasAttribute('min')||value>=Number(input.min))&&(!input.hasAttribute('max')||value<=Number(input.max));
@@ -25,7 +24,7 @@ function request(){
 }
 function design(){return {groundMm:80,z:names.map(k=>number($('dim-'+k)))};}
 function invalidate(){
-  state.revision++;state.current=false;
+  state.revision++;state.current=false;notice('');
   $('export').disabled=true;$('identity').textContent='EDITED · RECALCULATE';
   $('resultLabel').textContent='PREVIOUS RESULT · INPUT CHANGED';
   $('resultTitle').textContent='Recalculate this design.';
@@ -147,24 +146,28 @@ async function operation(kind){
   let payload;
   try{state.request=request();state.design=design();payload=kind==='solve'?state.request:{request:state.request,design:state.design};}catch(e){notice(e.message);return;}
   state.busy=true;const revision=state.revision;
+  state.current=false;notice('');
   ['solve','check','export','example'].forEach(k=>$(k).disabled=true);
   $('identity').textContent=kind==='solve'?'FITTING · FINITE SEARCH':'CHECKING ENTIRE CYCLE';
+  $('resultCard').className='resultcard';$('witness').hidden=true;$('metrics').replaceChildren();
   $('resultLabel').textContent='CALCULATION IN PROGRESS';
+  $('resultTitle').textContent=kind==='solve'?'Fitting the requested motion…':'Checking the full revolution…';
+  $('resultText').textContent='Waiting for a fresh calculation. You can keep editing; changed inputs will need another check.';
   try{
     const response=await fetch('/api/'+kind,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     const result=await response.json();if(!response.ok)throw new Error(result.error||'Calculation failed.');
     if(revision!==state.revision){notice('Input changed while calculating. Recalculate the current draft.');return;}
     state.result=result;state.request=result.request;state.design=result.design;state.current=true;controls();renderResult(result);if(kind==='solve')fitView();
-  }catch(e){state.current=false;$('identity').textContent='REFUSED · EDIT INPUT';$('resultLabel').textContent='NO VALID RESULT';$('resultTitle').textContent='This input was refused.';$('resultText').textContent=e.message;$('resultCard').className='resultcard unresolved';$('witness').hidden=true;}
+  }catch(e){if(revision!==state.revision)return;state.current=false;$('identity').textContent='NO RESULT · RETRY';$('resultLabel').textContent='CALCULATION NOT COMPLETED';$('resultTitle').textContent='No fresh result is available.';$('resultText').textContent=e.message+' Review the input or retry the calculation.';$('resultCard').className='resultcard unresolved';$('witness').hidden=true;}
   finally{state.busy=false;['solve','check','example'].forEach(k=>$(k).disabled=false);$('export').disabled=!state.current;}
 }
 function download(bytes,name,type){const url=URL.createObjectURL(new Blob([bytes],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}
 async function exportDesign(){
   if(!state.current||state.busy)return;
   let payload;try{payload={request:request(),design:design()};}catch(e){notice(e.message);return;}
-  const revision=state.revision;state.busy=true;['solve','check','export','example'].forEach(k=>$(k).disabled=true);$('identity').textContent='RECOMPUTING EXPORT';
+  const revision=state.revision;state.busy=true;notice('');['solve','check','export','example'].forEach(k=>$(k).disabled=true);$('identity').textContent='RECOMPUTING EXPORT';
   try{const reply=await fetch('/api/export',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!reply.ok){const e=await reply.json();throw new Error(e.error||'Export failed.');}const bytes=await reply.arrayBuffer();if(revision!==state.revision){notice('The draft changed. Recalculate before exporting.');return;}download(bytes,'sweepforge-design.zip','application/zip');notice('Export includes frozen inputs, calculations, flat patterns and an offline replay.');renderResult(state.result);}
-  catch(e){notice(e.message);}
+  catch(e){if(revision===state.revision){renderResult(state.result);$('identity').textContent='EXPORT FAILED · RETRY';notice('Export failed ('+e.message+'). Your draft is retained. Retry Export design & replay.');}}
   finally{state.busy=false;['solve','check','example'].forEach(k=>$(k).disabled=false);$('export').disabled=!state.current;}
 }
 function screen(event){const r=canvas.getBoundingClientRect();return [event.clientX-r.left,event.clientY-r.top];}
@@ -207,5 +210,9 @@ async function loadExample(index){const ex=state.examples[index];state.request=c
 $('example').onchange=()=>loadExample(Number($('example').value));
 let previous=0;
 function frame(time){if(state.playing){state.phase=(state.phase+Math.min(50,time-previous)*.018)%360;$('phase').value=state.phase;$('phaseValue').textContent=Math.round(state.phase)+'°';}previous=time;draw();requestAnimationFrame(frame);}
-async function start(){try{const reply=await fetch('/api/examples');state.examples=await reply.json();state.examples.forEach((ex,i)=>{const o=document.createElement('option');o.value=i;o.textContent=ex.name;$('example').append(o);});await loadExample(0);}catch(e){$('resultText').textContent=e.message;}requestAnimationFrame(frame);}
+async function start(){
+  $('play').textContent=state.playing?'Ⅱ':'▶';$('play').setAttribute('aria-label',state.playing?'Pause animation':'Play animation');
+  try{const reply=await fetch('/api/examples');if(!reply.ok)throw new Error('Examples could not be loaded.');state.examples=await reply.json();state.examples.forEach((ex,i)=>{const o=document.createElement('option');o.value=i;o.textContent=ex.name;$('example').append(o);});await loadExample(0);}catch(e){$('identity').textContent='WORKSHOP NOT LOADED';$('resultLabel').textContent='CONNECTION NEEDED';$('resultTitle').textContent='Reconnect to the local workshop.';$('resultText').textContent=e.message+' Keep the local server running, then reload this page.';}
+  requestAnimationFrame(frame);
+}
 if(typeof document!=='undefined')start();

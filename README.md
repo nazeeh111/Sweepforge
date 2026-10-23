@@ -73,4 +73,4 @@ Tests include independent rigid-circle geometry, held-out inverse-fit positions,
 
 Mechanism synthesis and continuous collision methods have substantial prior art. [MotionGen](https://docs.motiongen.io/docs/kinematic-synthesis/path-synthesis), [Pyslvs](https://github.com/KmolYuan/Pyslvs-UI) and [Disney Research](https://la.disneyresearch.com/publication/computational-design-of-mechanical-characters/) are relevant precedents. Sweepforge's contribution is this focused integration of timed fitting, interval body/tolerance clearance, visible counterexamples and portable recalculation. No claim of inventing four-bar synthesis or outperforming those systems.
 
-Built with NumPy, SciPy and [mpmath](https://mpmath.org/doc/current/contexts.html). Development and review used Codex; reproducible calculations support the claims. See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and the verification commands.
+Built with NumPy, SciPy and [mpmath](https://mpmath.org/doc/current/contexts.html). See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and the verification commands.
