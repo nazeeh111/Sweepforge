@@ -67,10 +67,8 @@ One planar crank-rocker topology, a fixed 80 mm ground span and the positive cir
 
 Dimension intervals cover ground, crank/coupler/rocker lengths, tool-frame coordinates and body radii. Frame rotation, phase and translation are exact conventions. Obstacles are fixed circles. Own-link contact, joint stacks, bearings, motor housing, alignment uncertainty, loads, friction, flex and physical safety are outside the model. No hardware was tested. mpmath's interval support is experimental; the method and tests state the narrower operations used.
 
-## Evidence and prior work
+## Verification
 
 Tests include independent rigid-circle geometry, held-out inverse-fit positions, dimensional/angle interval containment, closest-point capsule enclosures, nominal collisions, tolerance-only uncertainty, budget/tangency refusals, strict input validation, export tampering and outside-folder replay. JavaScript geometry has independent closure controls. Hosted checks exercise Linux and macOS with fresh installed CLI runs.
 
-Mechanism synthesis and continuous collision methods have substantial prior art. [MotionGen](https://docs.motiongen.io/docs/kinematic-synthesis/path-synthesis), [Pyslvs](https://github.com/KmolYuan/Pyslvs-UI) and [Disney Research](https://la.disneyresearch.com/publication/computational-design-of-mechanical-characters/) are relevant precedents. Sweepforge's contribution is this focused integration of timed fitting, interval body/tolerance clearance, visible counterexamples and portable recalculation. No claim of inventing four-bar synthesis or outperforming those systems.
-
-Built with NumPy, SciPy and [mpmath](https://mpmath.org/doc/current/contexts.html). See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and the verification commands.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and verification commands. [MIT license](LICENSE).
