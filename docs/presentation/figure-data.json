@@ -1,0 +1,97 @@
+{
+  "views": [
+    {
+      "figure": "desktop",
+      "overview": {
+        "lo": [
+          -4.866194581247046,
+          -41.731894167336584
+        ],
+        "hi": [
+          98.62146149259762,
+          76.9118183999791
+        ],
+        "scale": 3.540010599058941,
+        "origin": [
+          188.82630031341174,
+          250.0
+        ],
+        "box": [
+          24,
+          250,
+          696,
+          420
+        ]
+      },
+      "detail": {
+        "lo": [
+          52.891058254226124,
+          59.855446357409164
+        ],
+        "hi": [
+          58.891058254226124,
+          65.85544635740916
+        ],
+        "scale": 51.666666666666664,
+        "origin": [
+          836.0,
+          295.0
+        ],
+        "box": [
+          836,
+          295,
+          310,
+          310
+        ]
+      },
+      "all512Curve48Targets64SamplesAnd6BarsRetained": true
+    },
+    {
+      "figure": "phone",
+      "overview": {
+        "lo": [
+          -4.866194581247046,
+          -41.731894167336584
+        ],
+        "hi": [
+          98.62146149259762,
+          76.9118183999791
+        ],
+        "scale": 2.6971509326163363,
+        "origin": [
+          70.43908595307562,
+          242.0
+        ],
+        "box": [
+          24,
+          242,
+          372,
+          320
+        ]
+      },
+      "detail": {
+        "lo": [
+          52.891058254226124,
+          59.855446357409164
+        ],
+        "hi": [
+          58.891058254226124,
+          65.85544635740916
+        ],
+        "scale": 50.0,
+        "origin": [
+          60.0,
+          711.0
+        ],
+        "box": [
+          60,
+          711,
+          300,
+          300
+        ]
+      },
+      "all512Curve48Targets64SamplesAnd6BarsRetained": true
+    }
+  ],
+  "encoding": "Nominal geometric samples, not interval enclosures. Exact source interval verdict is separate. Two zooms have separately declared equal physical scales."
+}

@@ -6,7 +6,16 @@ Sweepforge is a local workshop for timed-path linkage design. Edit a loop, fit a
 
 No account, AI provider, cloud computation or runtime network dependency. Original software and synthetic examples, MIT licensed.
 
-![Actual studio: 64 tool-point samples miss the obstacle, while the interval checker finds a collision. This diagnostic checks the tool only.](docs/studio.png)
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/presentation/between-frames-mobile.svg">
+  <img src="docs/presentation/between-frames.svg" alt="Actual fitted linkage and an equal-scale detail of its one millimetre obstacle. All 64 sampled tool positions miss, with a 0.751 millimetre minimum sampled gap, while the native interval checker finds a collision between frames 53 and 54. The midpoint probe is a diamond; the stored interval witness is a red circle. This diagnostic excludes bars and uses zero dimension tolerance.">
+</picture>
+
+**The fitted motion can look clear in every playback frame and still collide.**
+In this executed workbench case, one timed target moves by 0.2 mm. The refit stays
+within 0.178 mm of all requested samples, yet the between-frame check finds the
+nominal tool inside the forbidden disk. [Follow the real edit, native export and fresh replay](docs/presentation/README.md) · [Download the native calculation bundle](docs/presentation/ui-design.zip).
+
 
 ## Try it
 
@@ -72,3 +81,9 @@ Dimension intervals cover ground, crank/coupler/rocker lengths, tool-frame coord
 Tests include independent rigid-circle geometry, held-out inverse-fit positions, dimensional/angle interval containment, closest-point capsule enclosures, nominal collisions, tolerance-only uncertainty, budget/tangency refusals, strict input validation, export tampering and outside-folder replay. JavaScript geometry has independent closure controls. Hosted checks exercise Linux and macOS with fresh installed CLI runs.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for useful contributions and verification commands. [MIT license](LICENSE).
+
+## Earlier workbench capture
+
+![Actual studio: 64 tool-point samples miss the obstacle, while the interval checker finds a collision. This diagnostic checks the tool only.](docs/studio.png)
+
+This retained capture is separate from the newly edited and fitted case above.

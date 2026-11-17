@@ -1,0 +1,62 @@
+[
+  {
+    "argv": [
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-runtime/bin/python",
+      "-B",
+      "-m",
+      "sweepforge",
+      "solve",
+      "/Users/nazeeh/Documents/Codex/2026-11-17/portfolio-design/candidates/repositories/Sweepforge-design/source/examples/between-frames-request.json",
+      "--out",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/fitted.json"
+    ],
+    "exit": 0,
+    "stdout": "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/fitted.json\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-runtime/bin/python",
+      "-B",
+      "-m",
+      "sweepforge",
+      "check",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/design.json",
+      "--out",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/checked.json"
+    ],
+    "exit": 0,
+    "stdout": "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/checked.json\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-runtime/bin/python",
+      "-B",
+      "-m",
+      "sweepforge",
+      "export",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/design.json",
+      "--out",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/design.zip"
+    ],
+    "exit": 0,
+    "stdout": "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/design.zip\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-runtime/bin/python",
+      "-B",
+      "-m",
+      "sweepforge",
+      "check",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/design.json",
+      "--out",
+      "/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/checked.json"
+    ],
+    "exit": 2,
+    "stdout": "",
+    "stderr": "[Errno 17] File exists: '/Users/nazeeh/.local/share/portfolio-design-2026-11-17/Sweepforge-work/checked.json'\n"
+  }
+]
