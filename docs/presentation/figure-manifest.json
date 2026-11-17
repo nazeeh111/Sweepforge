@@ -1,0 +1,18 @@
+{
+  "source_commit": "4925ccafeddf92682fe40f87dbae1aa4f40c5ecf",
+  "source_tree": "9db9448272a2c4a748eca608cb176c0ba2c71d3e",
+  "encoding": "Actual edited fitted nominal geometry in millimetres; all targets, 64 samples, 512-point nominal display; separately scaled equal-aspect detail. Nominal probe and stored interval witness explicitly distinct. Tool-only diagnostic, no physical safety claim.",
+  "files": {
+    "source-request.json": "72ab65238e0e270e19ea1c8a275d4d1b990b6d705b84c9c8c0f7181e86f6da9d",
+    "ui-request.json": "a23a9447c7dfdf6b3f86a7fda3e80b54455daf783afe6578418bcf83974716a5",
+    "ui-fitted.json": "c1fc81eedaccb79f46b218d41a327541dba6a97e053c50608c0224ae6862f9b4",
+    "geometry.json": "06e8db11e1b5179098d41d9e3345e03a5c7cc7e91c51b8c82f3cb4c3c443400a",
+    "figure-data.json": "8c839e3dab674554db86d0495b25800b5f79be690be743527e3d583d7580986c",
+    "figure.py": "ef48e9b02d43f98e79e652fedc983375283de72e5df2d6a77b751de4512cb3f1",
+    "between-frames.svg": "0740df16584694f4881f300e479cc22c5b7634a46482739b21904a2ea00c6b68",
+    "between-frames-mobile.svg": "0b60bdccb740bf8b1a8d010a1dcb76d49aa305d7b77b88d34be13c54cae0e584",
+    "between-frames.png": "4bcd33381e06ba0d40db7cd53bf930568a2fc0da5797f7f39530e0c4a0585a4d",
+    "between-frames-mobile.png": "def2cad5fd3ee950f30af4edd0ede6895310501fda47926d52193f83210b47da",
+    "ui-design.zip": "5b044dbbe80e84519ee8bc56739255d087c6691bc0583a9466bd1779f2ff5aba"
+  }
+}

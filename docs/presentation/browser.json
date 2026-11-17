@@ -1,0 +1,105 @@
+{
+  "actualTimedPointEdit": {
+    "point": 0,
+    "deltaYmm": 0.2
+  },
+  "solved": [
+    {
+      "fit": {
+        "maxErrorMm": 0.1777396264259595,
+        "rmsErrorMm": 0.027212147326054734,
+        "status": "within_tolerance",
+        "method": "10 deterministic starts; SciPy max_nfev=500 per start, with additional numerical Jacobian calls. One finite found candidate, no uniqueness or arbitrary-path guarantee."
+      },
+      "baseline": {
+        "frames": 64,
+        "minimumGapMm": 0.751081933720299,
+        "intersects": false,
+        "scope": "Nominal samples only; no clearance proof"
+      },
+      "report": {
+        "state": "collision",
+        "cells": 121,
+        "work": 382,
+        "budget": 8000,
+        "inputSha256": "7fe24a399e880af24498549427a4d93e3411147fb86e94e73bbf28967f160718",
+        "bounds": {
+          "dimensionIntervalsMm": {
+            "r": [
+              22.004193437551013,
+              22.004193437551013
+            ],
+            "p": [
+              71.85248894702711,
+              71.85248894702711
+            ],
+            "q": [
+              66.24078146051117,
+              66.24078146051117
+            ],
+            "u": [
+              84.83636037348671,
+              84.83636037348671
+            ],
+            "v": [
+              29.853901252694097,
+              29.853901252694097
+            ],
+            "groundMm": [
+              80,
+              80
+            ]
+          },
+          "radiusIntervalsMm": {
+            "linkRadiusMm": [
+              2,
+              2
+            ],
+            "toolRadiusMm": [
+              0,
+              0
+            ]
+          },
+          "angleRad": [
+            0,
+            6.283185307179586
+          ],
+          "components": "tool",
+          "clearanceMm": 0
+        },
+        "method": "Outward interval circle closure and clamped closest-point capsule projection; conservative degenerate segment hull. Entire angular cover, independent dimensional intervals; nominal interior collision witnesses only.",
+        "limits": [
+          "One uniformly timed revolution, one fixed-topology positive assembly branch.",
+          "Nominal collisions; clear covers every declared independent dimension/radius interval.",
+          "Ground/r/p/q/u/v and nonnegative body radii vary; phase/yaw/translation are exact.",
+          "Only fixed circular obstacles versus declared capsules/tool disk; no own-link collisions.",
+          "No loads, flex, joint play, manufacturing/process or physical-safety guarantee.",
+          "Outward mpmath interval basic operations at 30 decimal digits; interval support is experimental."
+        ],
+        "witness": {
+          "component": "tool",
+          "obstacle": 0,
+          "angleRad": 5.279276945361008,
+          "angleInterval": [
+            5.27927689854763,
+            5.2792769921743865
+          ],
+          "distanceSquaredUpperMm2": 0.9999980850794602,
+          "expandedRadiusSquaredLowerMm2": 0.9999999999999999,
+          "nominalOnly": true
+        },
+        "reason": "A nominal interval is strictly inside the expanded obstacle; not a tolerance-only overlap"
+      }
+    }
+  ],
+  "witnessPhase": "302.48°",
+  "invalidImportRetainsCurrentExport": true,
+  "phaseKeyboard": {
+    "before": "302.5",
+    "after": "302.6"
+  },
+  "dimensionEditsInvalidateExport": true,
+  "recheckedAfterRestoration": true,
+  "phoneNoOverflow": true,
+  "errors": []
+}
