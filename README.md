@@ -14,7 +14,7 @@ No account, AI provider, cloud computation or runtime network dependency. Origin
 **The fitted motion can look clear in every playback frame and still collide.**
 In this executed workbench case, one timed target moves by 0.2 mm. The refit stays
 within 0.178 mm of all requested samples, yet the between-frame check finds the
-nominal tool inside the forbidden disk. [Follow the real edit, native export and fresh replay](docs/presentation/README.md) · [Download the native calculation bundle](docs/presentation/ui-design.zip).
+nominal tool inside the forbidden disk. [Follow the real edit, native export and fresh replay](docs/presentation/README.md) · [Download the native calculation bundle](https://raw.githubusercontent.com/nazeeh111/Sweepforge/2067ab3d9bda0a2862ee339e703770a294b400fa/docs/presentation/ui-design.zip).
 
 
 ## Try it
