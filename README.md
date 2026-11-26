@@ -68,7 +68,7 @@ sweepforge check examples/sculpted-design.json --out checked.json
 sweepforge export examples/sculpted-design.json --out design.zip
 ```
 
-`solve` consumes a request. `check` and `export` consume `{"request": …, "design": …}`. The CLI refuses to overwrite existing output files. The [method](docs/method.md) documents the geometry, request bounds and interpretation.
+`solve` consumes a request. `check` and `export` consume `{"request": …, "design": …}`. The CLI publishes complete outputs without overwriting existing files. Choose an output directory on a filesystem that supports hard links. The [method](docs/method.md) documents the geometry, request bounds and interpretation.
 
 ## What this version covers
 

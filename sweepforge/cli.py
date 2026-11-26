@@ -1,8 +1,28 @@
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from .io import read_json
+
+def write_new_output(path, data):
+    published = False
+    try:
+        with TemporaryDirectory(prefix='.sweepforge-', dir=path.parent) as directory:
+            staged = Path(directory) / 'output'
+            with staged.open('xb') as stream:
+                stream.write(data)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.link(staged, path)
+            published = True
+    except OSError as error:
+        if not published:
+            raise
+        print(f'Output saved to {path}; could not remove staging directory {directory}: {error}',
+              file=sys.stderr)
+
 
 def main():
     parser=argparse.ArgumentParser(description='Timed-path linkage fitting and modeled full-cycle clearance')
@@ -32,9 +52,7 @@ def main():
             from .core import analyze
             value=analyze(read_json(args.input),fit=args.command=='solve')
             data=json.dumps(value,indent=2,allow_nan=False).encode()+b'\n'
-        # Refuse overwriting by default. Existing user artifacts remain intact.
-        with args.out.open('xb') as stream:
-            stream.write(data)
+        write_new_output(args.out, data)
         print(str(args.out.resolve()))
         return 0
     except (ValueError,OSError,TypeError,KeyError,ArithmeticError) as error:
