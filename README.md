@@ -30,7 +30,7 @@ python -m pip install -r requirements.lock .
 sweepforge studio
 ```
 
-Open **http://127.0.0.1:6381/**. The released wheel can also be installed with `python -m pip install /path/to/sweepforge-0.1.0-py3-none-any.whl`. Dependency installation needs a package source or a local wheel cache; calculations use no network.
+Open **http://127.0.0.1:6381/**. The [released wheel](https://github.com/nazeeh111/Sweepforge/releases/latest) can also be installed with `python -m pip install /path/to/sweepforge-0.1.1-py3-none-any.whl`. Dependency installation needs a package source or a local wheel cache; calculations use no network.
 
 Start with **Sculpted loop**. Drag a cyan target point, then **Fit mechanism**. Add an obstacle or edit bar radius and dimension tolerance, then **Check current dimensions**. Dimension edits invalidate the previous result. Export recomputes from the frozen inputs and never accepts a client-supplied verdict.
 
